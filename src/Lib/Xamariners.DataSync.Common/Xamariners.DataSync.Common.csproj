@@ -5,11 +5,11 @@
     <MinimumVisualStudioVersion>14.0</MinimumVisualStudioVersion>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{96E0FBDC-7645-4BFD-8D20-657A17C96E72}</ProjectGuid>
+    <ProjectGuid>{D6998195-076C-4765-9BEE-460923652081}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Xamariners.DataSync.Client</RootNamespace>
-    <AssemblyName>Xamariners.DataSync.Client</AssemblyName>
+    <RootNamespace>Xamariners.DataSync.Common</RootNamespace>
+    <AssemblyName>Xamariners.DataSync.Common</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
@@ -39,14 +39,36 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CacheUpdater.cs" />
+    <Compile Include="Enum\AppStatusEnum.cs" />
+    <Compile Include="Enum\LifetimeScopeEnum.cs" />
+    <Compile Include="Helper\ReflectionHelper.cs" />
+    <Compile Include="Implementation\CacheBase.cs" />
+    <Compile Include="Implementation\InMemoryCache.cs" />
+    <Compile Include="Implementation\NoCache.cs" />
+    <Compile Include="Infrastructure\AutofacResolver.cs" />
+    <Compile Include="Infrastructure\BinarySerialiser.cs" />
+    <Compile Include="Infrastructure\Resolver.cs" />
+    <Compile Include="Interface\ICache.cs" />
+    <Compile Include="Interface\ICacheable.cs" />
+    <Compile Include="Interface\ICacheService.cs" />
+    <Compile Include="Interface\IResolver.cs" />
+    <Compile Include="Model\CacheableBase.cs" />
+    <Compile Include="Model\CachedObject.cs" />
+    <Compile Include="Model\CachedQuery.cs" />
+    <Compile Include="Model\DataUpdate.cs" />
+    <Compile Include="Helper\MiscHelpers.cs" />
+    <Compile Include="Interface\ICacheUpdater.cs" />
+    <Compile Include="Interface\IDataUpdateService.cs" />
+    <Compile Include="Model\DataUpdateResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Xamariners.DataSync.Common\Xamariners.DataSync.Common.csproj">
-      <Project>{d6998195-076c-4765-9bee-460923652081}</Project>
-      <Name>Xamariners.DataSync.Common</Name>
-    </ProjectReference>
+    <Reference Include="Autofac">
+      <HintPath>..\..\..\..\..\..\Users\ben\.nuget\packages\Autofac\4.1.1\lib\netstandard1.1\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETPortable\v4.5\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
